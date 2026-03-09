@@ -445,19 +445,6 @@ Also cite the underlying LPCI threat model:
 
 ---
 
-## Authors
-
-| Name | Affiliation |
-|---|---|
-| **Hammad Atta** | Qorvex Consulting / Roshan Consulting |
-| **Ken Huang** | DistributedApps.AI / OWASP LLM Top 10 |
-| **Manish Bhatt** | OWASP / Project Kuiper Security |
-| **Kamal Ahmed** | Deloitte, Enterprise Risk & Technology GRC |
-| **Muhammad Aziz Ul Haq** | Reykjavik University |
-| **Yasir Mehmood** | Nokia Technology Center, Ulm |
-
----
-
 ## License
 
 Apache License 2.0 — see [LICENSE](LICENSE)
