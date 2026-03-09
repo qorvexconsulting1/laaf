@@ -25,7 +25,7 @@ class Outcome(str, Enum):
 
 @dataclass
 class Technique:
-    """Represents one of the 44 LPCI attack techniques."""
+    """Represents one of the 49 LPCI attack techniques."""
 
     id: str                        # e.g. "E1", "S3", "M7", "L2", "T11"
     name: str                      # human-readable name
@@ -51,7 +51,7 @@ class Technique:
 
 
 class TechniqueRegistry:
-    """Singleton registry for all 44 LAAF techniques + third-party plugins."""
+    """Singleton registry for all 49 LAAF techniques + third-party plugins."""
 
     _instance: ClassVar[Optional[TechniqueRegistry]] = None
     _techniques: dict[str, Technique]

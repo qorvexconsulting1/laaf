@@ -13,12 +13,13 @@ LAAF uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 #### Core Framework
 - **Persistent Stage Breaker (PSB)** algorithm implementing LPCI lifecycle adversarial search (paper §6.1, Eq. 2)
-- **44-technique LPCI taxonomy** across five categories:
+- **49-technique LPCI taxonomy** across six categories:
   - Encoding (E1–E11): Base64, Hex, Unicode, HTML entities, ROT13, URL, Binary, Octal, Nested-B64, ROT13+B64, Hex+B64
   - Structural (S1–S8): JSON, YAML, Markdown comment, HTML meta, Code block, Token split, XML, PDF metadata
   - Semantic (M1–M8): Formatting request, Compliance reframe, SysInit, ToolMeta, Authority, ISO standard, Trust build, DocConfig
   - Layered (L1–L5): Stacked multi-technique combinations with escalating complexity
   - Trigger (T1–T12): Keyword, compound, timing, cross-session, and steganographic triggers
+  - Exfiltration (EX1–EX5): URL parameter, Markdown image, JSON field, steganographic text, tool call argument
 - **MutationEngine** with 4 adaptive strategies (encoding, reframe, trigger, compound)
 - **ResponseAnalyser** with EXECUTED/BLOCKED/WARNING/UNKNOWN classification
 - **PayloadGenerator** with SHA-256 deduplication registry
@@ -46,7 +47,7 @@ LAAF uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `GET /scans/{id}` — poll scan status and results
 - `DELETE /scans/{id}` — remove scan record
 - `GET /reports/{id}?format=json|html|pdf|csv` — download reports
-- `GET /techniques` — list all 44 techniques
+- `GET /techniques` — list all 49 techniques
 - `GET /health` — service health and technique count
 
 #### Reporting
@@ -80,7 +81,6 @@ LAAF uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - LAAF paper: arXiv:2507.10457 — Atta et al., Qorvex Research, 2026
 - OWASP Top 10 for LLM Applications
 - NIST AI Risk Management Framework
-- QSAF (Qorvex Security Assessment Framework)
 
 ---
 

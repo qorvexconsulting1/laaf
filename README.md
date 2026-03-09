@@ -14,7 +14,7 @@
 [![OWASP LLM](https://img.shields.io/badge/OWASP-LLM%20Top%2010-orange.svg)](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
 [![Tests](https://img.shields.io/badge/tests-118%20passing-brightgreen.svg)](tests/)
 
-[Paper](paper/LAAF_Paper.pdf) • [Quick Start](#quick-start) • [Techniques](#the-44-technique-taxonomy) • [Reports](#sample-reports) • [API Docs](#rest-api) • [Cite](#citation)
+[Paper](paper/LAAF_Paper.pdf) • [Quick Start](#quick-start) • [Techniques](#the-49-technique-taxonomy) • [Reports](#sample-reports) • [API Docs](#rest-api) • [Cite](#citation)
 
 </div>
 
@@ -22,7 +22,7 @@
 
 ## What is LAAF?
 
-LAAF operationalises the [LPCI threat model](https://arxiv.org/abs/2507.10457) as a systematic, automated red-teaming instrument. It implements a **44-technique taxonomy** across five attack categories, a **Persistent Stage Breaker (PSB)** algorithm that mirrors real adversarial escalation, and multi-platform evaluation across the full 6-stage LPCI lifecycle.
+LAAF operationalises the [LPCI threat model](https://arxiv.org/abs/2507.10457) as a systematic, automated red-teaming instrument. It implements a **49-technique taxonomy** across six attack categories, a **Persistent Stage Breaker (PSB)** algorithm that mirrors real adversarial escalation, and multi-platform evaluation across the full 6-stage LPCI lifecycle.
 
 Unlike [Garak](https://github.com/NVIDIA/garak) and [PyRIT](https://github.com/Azure/PyRIT) — which address surface-level prompt injection — LAAF models **memory persistence, layered encoding, semantic reframing, and multi-stage lifecycle execution**: the distinguishing characteristics of LPCI attacks against agentic systems.
 
@@ -45,28 +45,31 @@ Payload Generator  ──►  Stage Engine (S1→S2→S3→S4→S5→S6)
 
 ## Empirical Results
 
-Evaluated against 5 production LLM endpoints via OpenRouter API (2026-03-06):
+Evaluated against 5 production LLM endpoints via OpenRouter API (2026-03-09, PSB scan — 3 independent runs, 83% aggregate):
 
-| Platform | S1 | S2 | S3 | S4 | S5 | S6 | BR | Total Attempts |
+| Platform | S1 | S2 | S3 | S4 | S5 | S6 | BR | PSB Attempts |
 |---|---|---|---|---|---|---|---|---|
-| Gemini-2.0-flash | 9 | 2 | 1 | 1 | 4 | 51 | **100%** | 68 |
-| Claude-3-haiku | 1 | 81 | 1 | 1 | 7 | 2 | **100%** | 93 |
-| Mixtral-8x7b | 24 | 24 | 78 | 56 | 22 | 38 | **100%** | 242 |
-| LLaMA3-70B | 40 | 45 | 2 | 2 | — | — | 67% | 289 |
-| ChatGPT-4o-mini | — | 1 | 75 | — | — | 63 | 50% | 439 |
+| Gemini-2.0-flash | 2 | 1 | 1 | 2 | 2 | 1 | **100%** | 9 |
+| Mixtral-8x7b | 39 | 24 | 5 | 3 | 1 | 7 | **100%** | 79 |
+| LLaMA3-70B | 59 | 18 | 4 | 3 | — | 26 | 83% | 210 |
+| Claude-3-haiku | — | 1 | 7 | 5 | — | 19 | 67% | 232 |
+| ChatGPT-4o-mini | 33 | — | 97 | 15 | — | 28 | 67% | 373 |
 
 > **BR** = Breakthrough Rate (stages broken / 6). A dash means the stage resisted within the 100-attempt budget.
-> Full HTML assessment reports with evidence → [`results/paper_table2/reports/`](results/paper_table2/reports/)
+> Columns show attempts at the breakthrough payload; PSB Attempts = total attempts across all stages.
+> Full HTML assessment reports with evidence → [`results/paper_verification_v2/`](results/paper_verification_v2/)
 
-### LAAF vs Single-Technique Baseline
+### LAAF vs LPCI Baseline
 
-| Platform | LPCI Baseline | LAAF | Improvement |
+LAAF PSB compared against the LPCI paper's structured manual baseline (1,700 test cases, Atta et al. 2025):
+
+| Platform | LPCI Baseline | LAAF PSB | Improvement |
 |---|---|---|---|
 | Gemini | 71% | **100%** | +29pp |
-| Claude | 32% | **100%** | +68pp |
 | Mixtral | 49% | **100%** | +51pp |
-| LLaMA3 | 49% | 67% | +18pp |
-| ChatGPT | 15% | 50% | +35pp |
+| LLaMA3 | 49% | 83% | +34pp |
+| Claude | 32% | 67% | +35pp |
+| ChatGPT | 15% | 67% | +52pp |
 
 ---
 
@@ -93,7 +96,7 @@ laaf scan --target mock --dry-run
 # Full mock scan — all 6 stages, produces HTML + CSV + JSON report
 laaf scan --target mock --stages all --payloads 100 --output results/
 
-# Browse all 44 techniques
+# Browse all 49 techniques
 laaf list-techniques
 laaf list-techniques --category encoding
 laaf list-techniques --category semantic
@@ -168,7 +171,7 @@ laaf serve --host 0.0.0.0 --port 8080
 ```bash
 cp .env.example .env        # add your API keys
 docker compose up
-# API: http://localhost:8080
+# API: http://localhost:8081
 ```
 
 ---
@@ -181,11 +184,11 @@ HTML reports capture full evidence per stage — attack payload, LLM response, i
 
 | Platform | Breakthrough Rate | Report |
 |---|---|---|
-| Gemini-2.0-flash | 100% (6/6 stages) | [`report_Gemini-2.html`](results/paper_table2/reports/report_Gemini-2.html) |
-| Claude-3-haiku | 100% (6/6 stages) | [`report_Claude.html`](results/paper_table2/reports/report_Claude.html) |
-| Mixtral-8x7b | 100% (6/6 stages) | [`report_Mixtral-8x7b.html`](results/paper_table2/reports/report_Mixtral-8x7b.html) |
-| LLaMA3-70B | 67% (4/6 stages) | [`report_LLaMA3-70B.html`](results/paper_table2/reports/report_LLaMA3-70B.html) |
-| ChatGPT-4o-mini | 50% (3/6 stages) | [`report_ChatGPT.html`](results/paper_table2/reports/report_ChatGPT.html) |
+| Gemini-2.0-flash | 100% (6/6 stages) | [`report_Gemini-2.html`](results/paper_verification_v2/reports/report_Gemini-2.html) |
+| Mixtral-8x7b | 100% (6/6 stages) | [`report_Mixtral-8x7b.html`](results/paper_verification_v2/reports/report_Mixtral-8x7b.html) |
+| LLaMA3-70B | 83% (5/6 stages) | [`report_LLaMA3-70B.html`](results/paper_verification_v2/reports/report_LLaMA3-70B.html) |
+| Claude-3-haiku | 67% (4/6 stages) | [`report_Claude.html`](results/paper_verification_v2/reports/report_Claude.html) |
+| ChatGPT-4o-mini | 67% (4/6 stages) | [`report_ChatGPT.html`](results/paper_verification_v2/reports/report_ChatGPT.html) |
 
 Each report contains per-stage findings structured as:
 
@@ -208,7 +211,7 @@ Finding #N — [Stage Name]
 
 ---
 
-## The 44-Technique Taxonomy
+## The 49-Technique Taxonomy
 
 <div align="center">
 <img src="paper/figures/Technique Taxonomy Hierarchy.png" width="700" alt="Taxonomy"/>
@@ -221,8 +224,9 @@ Finding #N — [Stage Name]
 | 3 | **Semantic** | 8 | M1 Formatting req, M2 GDPR Compliance, M3 System Init, M4 Tool Schema, M5 Authority Spoof, M6 ISO Audit, M7 Gradual Trust Build, M8 Document Config |
 | 4 | **Layered** | 5 | L1 ROT13+B64+JSON+Semantic, L2 Unicode+HTML+Compliance, L3 NestedB64+YAML+Authority, L4 Hex+Split+Formatting, L5 URL+CodeBlock+ISO |
 | 5 | **Trigger** | 12 | T1 Keyword, T2 AND, T3 OR, T4 NOT compound, T5 Turn count, T6 Duration, T7 Role elevation, T8 Tool event, T9 Memory rehydration, T10 Cross-session, T11 Nested compound, T12 Steganographic |
+| 6 | **Exfiltration** | 5 | EX1 URL Parameter, EX2 Markdown Image, EX3 JSON Field, EX4 Steganographic Text, EX5 Tool Call Argument |
 
-**Payload space:** `11 × 8 × 8 × 12 × 4 × 6 × 20 = 2,027,520 unique combinations`
+**Payload space:** `49 × 5 × 1,920 × 6 = 2,822,400 unique combinations`
 
 ---
 
@@ -270,7 +274,7 @@ and seeds stage $s_{i+1}$ with $B_{i+1} = \mu(p_i^*)$ where $\mu$ is the mutatio
 
 | Capability | LAAF | Garak | PyRIT |
 |---|---|---|---|
-| LPCI-specific taxonomy | ✅ 44 techniques | ❌ | ❌ |
+| LPCI-specific taxonomy | ✅ 49 techniques | ❌ | ❌ |
 | 6-stage lifecycle model | ✅ | ❌ | ❌ |
 | Memory persistence testing | ✅ | ❌ | ❌ |
 | Cross-session attack simulation | ✅ | ❌ | ❌ |
@@ -313,7 +317,7 @@ curl http://localhost:8080/reports/{scan_id}?format=html -o report.html
 | Method | Endpoint | Description |
 |---|---|---|
 | `GET` | `/health` | Health check + technique count |
-| `GET` | `/techniques` | List all 44 techniques |
+| `GET` | `/techniques` | List all 49 techniques |
 | `GET` | `/techniques/{id}` | Get single technique detail |
 | `POST` | `/scans` | Launch PSB scan (async background) |
 | `GET` | `/scans/{id}` | Scan status + stage results |
@@ -360,7 +364,7 @@ laaf/
 │   │   ├── executor.py        # Async LLM API executor
 │   │   ├── analyser.py        # EXECUTED/BLOCKED/WARNING classifier
 │   │   └── mutator.py         # 4 mutation strategies
-│   ├── taxonomy/              # 44 techniques (encoding/structural/semantic/layered/triggers)
+│   ├── taxonomy/              # 49 techniques (encoding/structural/semantic/layered/triggers/exfiltration)
 │   ├── platforms/             # OpenAI, Anthropic, Google, HuggingFace, OpenRouter, Mock
 │   ├── reporting/             # CSV, JSON, HTML, PDF reporters
 │   ├── api/                   # FastAPI REST server

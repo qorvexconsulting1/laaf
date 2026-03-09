@@ -1,4 +1,4 @@
-"""LAAF 44-Technique Taxonomy — five categories of LPCI attack construction."""
+"""LAAF 49-Technique Taxonomy — six categories of LPCI attack construction."""
 
 from laaf.taxonomy.base import (
     Category,

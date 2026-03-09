@@ -82,9 +82,9 @@ laaf scan --target openrouter --model openai/gpt-4o       --output results/model
 │                  Core Engine (PSB)                   │
 │   PayloadGenerator → MutationEngine → ResponseAnalyser│
 ├──────────────────────────────────────────────────────┤
-│              Taxonomy (44 techniques)                │
+│              Taxonomy (49 techniques)                │
 │     Encoding(11) + Structural(8) + Semantic(8)       │
-│         + Layered(5) + Trigger(12)                   │
+│     + Layered(5) + Trigger(12) + Exfiltration(5)     │
 ├──────────────────────────────────────────────────────┤
 │           Platform Adapters                          │
 │  OpenAI │ Anthropic │ Google │ Azure │ HuggingFace  │
@@ -103,9 +103,9 @@ docker compose up -d
 ```
 
 Access:
-- API: `http://localhost:8080/docs`
-- Dashboard: `http://localhost:8080`
-- Health: `http://localhost:8080/health`
+- API: `http://localhost:8081/docs`
+- Dashboard: `http://localhost:8081`
+- Health: `http://localhost:8081/health`
 
 ### Environment Variables
 
@@ -118,8 +118,8 @@ Access:
 | `HF_API_KEY` | Conditional | Required for HuggingFace API scans |
 | `AZURE_OPENAI_API_KEY` | Conditional | Required for Azure OpenAI scans |
 | `AZURE_OPENAI_ENDPOINT` | Conditional | Azure OpenAI resource endpoint |
-| `LAAF_RATE_DELAY` | No | Seconds between API calls (default: 2.0) |
-| `LAAF_MAX_PAYLOADS` | No | Max attempts per stage (default: 500) |
+| `LAAF_RATE_LIMIT_DELAY` | No | Seconds between API calls (default: 2.0) |
+| `LAAF_MAX_ATTEMPTS_PER_STAGE` | No | Max attempts per stage (default: 500) |
 | `LAAF_OUTPUT_DIR` | No | Results directory (default: `results/`) |
 | `LAAF_LOG_LEVEL` | No | Logging level: DEBUG/INFO/WARNING (default: INFO) |
 
@@ -335,6 +335,6 @@ Integrate with Grafana for continuous LPCI posture monitoring.
 
 ## Support
 
-- Issues: https://github.com/your-org/laaf/issues
-- Documentation: https://github.com/your-org/laaf/docs
+- Issues: https://github.com/qorvex-research/laaf/issues
+- Documentation: https://github.com/qorvex-research/laaf/docs
 - Paper: arXiv:2507.10457

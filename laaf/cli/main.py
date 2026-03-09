@@ -5,7 +5,7 @@ Commands:
   laaf scan            Run a PSB scan against a target LLM platform
   laaf serve           Start the REST API + web dashboard server
   laaf report          Generate a report from existing results
-  laaf list-techniques Show all 44 taxonomy techniques
+  laaf list-techniques Show all 49 taxonomy techniques
   laaf validate-config Validate a YAML config file
 """
 
@@ -286,7 +286,7 @@ def report(input_path, fmt, output):
               help="Filter by category")
 @click.option("--json", "as_json", is_flag=True, help="Output as JSON")
 def list_techniques(category, as_json):
-    """List all 44 LPCI attack techniques in the taxonomy."""
+    """List all 49 LPCI attack techniques in the taxonomy."""
     import json as _json
     registry = get_registry()
     if category:

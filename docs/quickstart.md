@@ -122,7 +122,7 @@ The HTML report contains:
 ## 6. Explore the Taxonomy
 
 ```bash
-# Show all 44 techniques
+# Show all 49 techniques
 laaf list-techniques
 
 # Filter by category
@@ -181,12 +181,12 @@ export OPENROUTER_API_KEY=sk-or-...
 python examples/paper_table2_scan.py
 ```
 
+Results are saved to `results/paper_verification_v<N>/table2_results.json`.
+
 Then regenerate all 5 HTML reports:
 ```bash
 python examples/generate_model_reports.py
 ```
-
-Reports saved to `results/paper_table2/reports/`
 
 ---
 

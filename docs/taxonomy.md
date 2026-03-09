@@ -1,4 +1,4 @@
-# LAAF Technique Taxonomy (44 Techniques)
+# LAAF Technique Taxonomy (49 Techniques)
 
 Full taxonomy from paper §5 — Atta et al., 2026 (arXiv:2507.10457).
 
@@ -82,3 +82,15 @@ Conditional activation — payload fires only when trigger condition is met.
 | T10 | Cross-Session           | Fires in future session    |
 | T11 | Confidence-Based        | Only if model is confident |
 | T12 | Steganographic          | Hidden via zero-width/encoding |
+
+## Category 6: Exfiltration (EX1–EX5)
+
+Channels injected instructions into data that exits the model boundary.
+
+| ID  | Name                        | Exfiltration Method                      | LPCI Stage |
+|-----|-----------------------------|------------------------------------------|------------|
+| EX1 | URL Parameter Exfil         | Embeds secrets in outbound URL query     | S6         |
+| EX2 | Markdown Image Exfil        | Encodes data in `![](url?data=...)` tag  | S6         |
+| EX3 | JSON Field Exfil            | Leaks data in structured JSON responses  | S6         |
+| EX4 | Steganographic Text Exfil   | Hides data via zero-width characters     | S6         |
+| EX5 | Tool Call Argument Exfil    | Smuggles data in function call arguments | S6         |

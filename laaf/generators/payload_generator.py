@@ -1,20 +1,20 @@
 """
 Payload Generator
 =================
-Constructs payloads by sampling from the 44-technique taxonomy across
+Constructs payloads by sampling from the 49-technique taxonomy across
 configurable variable dimensions. SHA-256 hash registry ensures no payload
 is sent twice within a test run.
 
 Paper §4.1 — LAAF (Atta et al., 2026)
 
 Payload Space Formula (Table 1):
-  P = T × I × M × S
-  P = 44 × 1,920 × 4 × 6 = 2,027,520
+  P = T × V × I × S
+  P = 49 × 5 × 1,920 × 6 = 2,822,400
 
 Where:
-  T = 44 techniques
+  T = 49 techniques
+  V = 5 variants per technique
   I = 1,920 instruction variants (96 base × 20 context modifiers)
-  M = 4 mutation strategies
   S = 6 LPCI lifecycle stages
 """
 
@@ -209,7 +209,7 @@ class PayloadGenerator:
     """
     Generates payloads by combining base instructions with taxonomy techniques.
 
-    Payload space: T × I × M × S = 44 × 1,920 × 4 × 6 = 2,027,520
+    Payload space: T × I × M × S = 49 × 1,920 × 4 × 6 = 2,257,920
     where I = 96 base instructions × 20 context modifiers.
 
     Guarantees uniqueness via SHA-256 deduplication.
@@ -267,8 +267,8 @@ class PayloadGenerator:
 
     @property
     def theoretical_payload_space(self) -> int:
-        """P = T × I × M × S (paper Table 1)."""
-        return len(self.techniques) * self.instruction_space_size * 4 * 6
+        """P = T × V × I × S (paper Table 1)."""
+        return len(self.techniques) * 5 * self.instruction_space_size * 6
 
     def generate(
         self,

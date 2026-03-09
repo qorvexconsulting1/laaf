@@ -15,8 +15,8 @@ LAAF (Logic-layer Automated Attack Framework) is structured in six horizontal la
 │   Payload Generator   │       Mutation Engine            │
 │  laaf/generators/     │     laaf/core/mutator.py         │
 ├───────────────────────┴─────────────────────────────────┤
-│                 Taxonomy (44 techniques)                 │
-│  encoding  structural  semantic  layered  triggers       │
+│                 Taxonomy (49 techniques)                 │
+│  encoding  structural  semantic  layered  triggers  exfiltration │
 ├─────────────────────────────────────────────────────────┤
 │              Platform Adapters                           │
 │  OpenAI  Anthropic  Google  HF  OpenRouter  Mock        │
