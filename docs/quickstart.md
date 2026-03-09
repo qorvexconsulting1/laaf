@@ -10,7 +10,7 @@
 ## 1. Install
 
 ```bash
-git clone https://github.com/qorvex-research/laaf
+git clone https://github.com/qorvexconsulting1/laaf
 cd laaf
 pip install -e .
 ```

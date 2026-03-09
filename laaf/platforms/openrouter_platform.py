@@ -50,7 +50,7 @@ class OpenRouterPlatform(AbstractPlatform):
         headers = {
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json",
-            "HTTP-Referer": "https://github.com/qorvex-research/laaf",
+            "HTTP-Referer": "https://github.com/qorvexconsulting1/laaf",
             "X-Title": "LAAF Security Research",
         }
         payload = {
