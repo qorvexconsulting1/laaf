@@ -253,9 +253,9 @@ Finding #N — [Stage Name]
 <img src="paper/figures/Persistent Stage Breaker Decision Loop.png" width="500" alt="PSB"/>
 </div>
 
-The PSB solves:
+The PSB finds the first breakthrough payload (satisficing — not global minimisation):
 
-$$p_i^* = \underset{p \in \mathcal{P}}{\arg\min} \; \text{attempts}(p, s_i) \quad \text{s.t.} \quad f(p, s_i) = \text{EXEC}$$
+$$p_i^* = \operatorname{first}\{p \in \pi_i : f(p, s_i) = \text{EXEC}\}$$
 
 and seeds stage $s_{i+1}$ with $B_{i+1} = \mu(p_i^*)$ where $\mu$ is the mutation function.
 
@@ -370,11 +370,10 @@ laaf/
 │   ├── api/                   # FastAPI REST server
 │   └── dashboard/             # Jinja2 + Vanilla JS web UI
 ├── paper/
-│   ├── LAAF_Paper.pdf         # Full research paper
 │   ├── LAAF_Paper.tex         # LaTeX source
 │   └── figures/               # Architecture diagrams (PNG)
-├── results/paper_table2/
-│   ├── table2_results.json    # Raw scan data (2026-03-06)
+├── results/paper_verification_v2/
+│   ├── *.json                 # Raw scan data (2026-03-09)
 │   └── reports/               # 5 HTML assessment reports
 ├── configs/                   # YAML stage configurations
 ├── docs/                      # Architecture, taxonomy, API docs
@@ -420,14 +419,12 @@ If you use LAAF in your research, please cite:
 
 ```bibtex
 @article{atta2026laaf,
-  title     = {LAAF: Logic-layer Automated Attack Framework — A Systematic
-               Red-Teaming Methodology for LPCI Vulnerabilities in
-               Agentic Large Language Model Systems},
-  author    = {Atta, Hammad and Huang, Ken and Bhatt, Manish and
-               Ahmed, Kamal and {Ul Haq}, Muhammad Aziz and Mehmood, Yasir},
-  institution = {Qorvex Research},
-  year      = {2026},
-  url       = {https://arxiv.org/abs/2507.10457}
+  title   = {LAAF: Logic-layer Automated Attack Framework --- A Systematic
+             Red-Teaming Methodology for LPCI Vulnerabilities in
+             Agentic Large Language Model Systems},
+  author  = {Atta, Hammad and others},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2507.10457}
 }
 ```
 
