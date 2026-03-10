@@ -195,7 +195,7 @@ Each report contains per-stage findings structured as:
 ```
 Finding #N — [Stage Name]
 ├── Severity:          CRITICAL / HIGH
-├── OWASP Mapping:     LLM01 / LLM07
+├── OWASP Mapping:     LLM01 / LLM06 / LLM07
 ├── Impact Chain:      Technique X → Bypasses Y → Enables Z → Business harm W
 ├── Observation:       What happened
 ├── What Was Achieved: Concrete attacker gain

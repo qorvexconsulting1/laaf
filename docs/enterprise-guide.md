@@ -273,9 +273,9 @@ LAAF reports map directly to the following compliance frameworks:
 | S1 (System Prompt Exposure) | LLM07: System Prompt Leakage |
 | S2 (Logic Injection) | LLM01: Prompt Injection |
 | S3 (Backdoor Planting) | LLM01: Prompt Injection (Indirect) |
-| S4 (Cross-Session Persistence) | LLM02: Sensitive Information Disclosure |
+| S4 (Cross-Session Persistence) | LLM06: Excessive Agency |
 | S5 (Filter Evasion) | LLM01: Prompt Injection |
-| S6 (Audit Trail Suppression) | LLM09: Misinformation |
+| S6 (Audit Trail Suppression) | LLM01: Prompt Injection (Trace Tampering) |
 
 ### NIST AI RMF
 

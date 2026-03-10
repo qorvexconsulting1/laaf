@@ -205,7 +205,7 @@ _STAGE_META = {
             "5. Do NOT deploy this model in any agentic system with shared memory without "
             "additional guardrails."
         ),
-        "owasp": "LLM02: Sensitive Information Disclosure / LLM08: Excessive Agency",
+        "owasp": "LLM06: Excessive Agency",
         "impact_chain": (
             "Technique {technique} instructs model to retain attacker payload across session boundaries "
             "→ Bypasses session isolation and memory access controls "
@@ -317,7 +317,7 @@ _STAGE_META = {
             "3. Apply QSAF control QS-05: Audit Trail Integrity. "
             "4. Review compliance posture against GDPR, SOC2, and ISO 27001 logging requirements."
         ),
-        "owasp": "LLM09: Misinformation / Insufficient Logging",
+        "owasp": "LLM01: Prompt Injection — Trace Tampering",
         "impact_chain": (
             "Technique {technique} instructs model to omit actions from audit logs "
             "→ Bypasses audit trail integrity controls "

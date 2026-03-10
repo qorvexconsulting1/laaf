@@ -27,7 +27,7 @@ Each broken stage produces one finding card structured as:
 Finding #N — [Stage Name]
 │
 ├── Severity:           CRITICAL | HIGH | MEDIUM
-├── OWASP Mapping:      LLM01 Prompt Injection | LLM07 System Prompt Leakage
+├── OWASP Mapping:      LLM01 Prompt Injection | LLM06 Excessive Agency | LLM07 System Prompt Leakage
 │
 ├── IMPACT CHAIN
 │   Technique X → Bypasses control Y → Enables action Z → Business harm W

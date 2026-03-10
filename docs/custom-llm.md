@@ -244,7 +244,7 @@ The HTML report contains:
 - **Per-Stage Findings** — which technique worked, how many attempts, confidence score
 - **Evidence** — exact payload sent + LLM response proving compliance
 - **Remediation** — specific steps to fix each finding
-- **OWASP Mapping** — LLM01 (Prompt Injection) / LLM07 (System Prompt Leakage)
+- **OWASP Mapping** — LLM01 (Prompt Injection) / LLM06 (Excessive Agency) / LLM07 (System Prompt Leakage)
 
 ---
 
