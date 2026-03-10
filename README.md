@@ -253,11 +253,7 @@ Finding #N — [Stage Name]
 <img src="paper/figures/Persistent Stage Breaker Decision Loop.png" width="500" alt="PSB"/>
 </div>
 
-The PSB finds the first breakthrough payload (satisficing — not global minimisation):
-
-$$p_i^* = \operatorname{first}\{p \in \pi_i : f(p, s_i) = \text{EXEC}\}$$
-
-and seeds stage $s_{i+1}$ with $B_{i+1} = \mu(p_i^*)$ where $\mu$ is the mutation function.
+The PSB finds the first breakthrough payload (satisficing — not global minimisation) and seeds the next stage with a mutated form of the winning payload.
 
 **Adaptive mutation strategy:**
 
